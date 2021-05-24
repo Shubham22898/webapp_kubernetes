@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Your Info</title>
+</head>
+<body style="background-color: #CAD5E2">
+<ul>
+{% for key,value in result.items() %}
+	<li>
+		<h2 style="color: #00AC61">{{ key.title() }}</h2>
+		<h3 style="color: #538FFB #5B54FA">{{ value }}</h3>
+	</li>
+
+{% endfor%}	
+</ul>
+</body>
+</html>

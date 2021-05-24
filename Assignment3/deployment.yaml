@@ -1,0 +1,27 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: my-apishow
+spec:
+  selector:
+    matchLabels:
+      app: webservers
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: webservers
+    spec:
+      containers:
+      - name: my-aspishow
+        image: test
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5000
+        volumeMounts:
+            - name: myconfigmap1
+              mountPath: /code/src/
+      volumes:
+      - name: myconfigmap1
+        configmap:
+        name: myconfigmap1

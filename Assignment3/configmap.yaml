@@ -1,0 +1,27 @@
+apiVersion: v1
+data:
+  apishow.py: "import re\nimport json\nimport socket\nimport urllib.request as urllib3\nimport
+    pytz\nfrom datetime import datetime\nfrom flask import Flask,render_template\n\napp
+    = Flask(__name__)\n\n@app.route(\"/\")\ndef get_info():\n\turl = 'http://ipinfo.io/json'\n\tresponse
+    = urllib3.urlopen(url)\n\tdata = json.load(response)\n\tresult ={}\n\n\tresult['IP']=data['ip']\n\tresult['host']=socket.gethostname()\n\t\n\tresult['city']
+    = data['city']\n\tresult['region']=data['region']\n\ttimezone = data['timezone']\n\tresult['country']=data['country']\n\t\n\tIST
+    = pytz.timezone(timezone)\n\tIST_time = datetime.now(IST)\n\tresult['IST']=IST_time\n\treturn
+    render_template(\"fonts.html\",result=result)\n\nif __name__ == '__main__':\n\tapp.run(debug=True)\t\n"
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2021-04-28T14:15:37Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:data:
+        .: {}
+        f:apishow.py: {}
+    manager: kubectl-create
+    operation: Update
+    time: "2021-04-28T14:15:37Z"
+  name: myconfigmap
+  namespace: default
+  resourceVersion: "8428"
+  uid: 01dcef02-322c-44ac-aa4b-a8525f6e0fd8
+

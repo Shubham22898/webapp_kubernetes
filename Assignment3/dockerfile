@@ -1,0 +1,18 @@
+FROM python:3-alpine
+
+#Set the working directory
+WORKDIR /usr/src/app
+
+#copy all the files
+COPY ./apishow.py .
+COPY ./requirements.txt .
+
+#Install the dependencies
+RUN pip3 install -r requirements.txt
+
+
+#Expose the required port
+EXPOSE 5000
+
+#Run the command
+CMD ["python3", "./apishow.py"]
